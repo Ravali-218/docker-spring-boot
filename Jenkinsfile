@@ -37,13 +37,7 @@ pipeline {
             }
         }
         
-        stage ("Helm package") {
-            steps {
-                    sh "helm package springboot"
-                }
-            }
-                
-        stage ("Helm install") {
+        stage ("Helm Deploy") {
             steps {
                     sh "helm upgrade first --install apr25-chart --namespace helm-deployment --set image.tag=$BUILD_NUMBER"
                 }
