@@ -24,6 +24,7 @@ pipeline {
             steps {
                 script {
                     docker.build registry
+                     dockerImage.tag("$BUILD_NUMBER")
                 }
             }
         }
@@ -32,7 +33,7 @@ pipeline {
             steps {
                 script {
                     sh "aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 222189480339.dkr.ecr.ap-south-1.amazonaws.com"
-                    sh "docker push 222189480339.dkr.ecr.ap-south-1.amazonaws.com/devops/my-repo:latest"                   
+                    sh "docker push 222189480339.dkr.ecr.ap-south-1.amazonaws.com/devops/my-repo:$BUILD_NUMBER"                   
                 }
             }
         }
